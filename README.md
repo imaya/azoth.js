@@ -7,7 +7,7 @@ Character encoding decoding library.
 
 ## Usage
 
-Include "azoth.min.js" in "bin" directory.
+Include "bin/azoth.min.js".
 
 ### Decode Shift JIS string
 
