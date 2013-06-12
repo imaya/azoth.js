@@ -1,10 +1,13 @@
 goog.provide('Azoth');
 
+/** @type {boolean} @const */
+var USE_TYPEDARRAY = (window['Uint8Array'] !== void 0);
+
 goog.scope(function() {
 
 /**
  * @constructor
- * @param {(Array.<number>|string)} source character code array.
+ * @param {(Array.<number>|string|Uint8Array)} source character code array.
  */
 Azoth = function(source) {
   /** @type {Array.<number>} */
@@ -14,6 +17,8 @@ Azoth = function(source) {
     this.source = Azoth.str2array_(source);
   } else if (source instanceof Array) {
     this.source = source;
+  } else if (USE_TYPEDARRAY && source instanceof Uint8Array) {
+    this.source = Array.prototype.slice.call(source);
   } else {
     throw new Error('invalid arguments');
   }

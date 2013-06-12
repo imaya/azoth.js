@@ -27,6 +27,33 @@
         });
       },
       //-----------------------------------------------------------------------
+      // Typed Array
+      //-----------------------------------------------------------------------
+      "SJIS ほげほげ Uint8Array": function(done) {
+        var azoth = new Azoth(new Uint8Array([130, 217, 130, 176, 130, 217, 130, 176]));
+
+        azoth.decode(Azoth.CharacterSet.SJIS, function(str) {
+          assert.equals(str, "ほげほげ");
+          done();
+        });
+      },
+      "EUCJP ほげほげ Uint8Array": function(done) {
+        var azoth = new Azoth(new Uint8Array([164, 219, 164, 178, 164, 219, 164, 178]));
+
+        azoth.decode(Azoth.CharacterSet.EUCJP, function(str) {
+          assert.equals(str, "ほげほげ");
+          done();
+        });
+      },
+      "UTF8 ほげほげ Uint8Array": function(done) {
+        var azoth = new Azoth(new Uint8Array([227, 129, 187, 227, 129, 146, 227, 129, 187, 227, 129, 146]));
+
+        azoth.decode(Azoth.CharacterSet.UTF8, function(str) {
+          assert.equals(str, "ほげほげ");
+          done();
+        });
+      },
+      //-----------------------------------------------------------------------
       // "'", "<CR>", "<LF>", "\" などの特殊な文字が混ざっていても機能するか
       //-----------------------------------------------------------------------
       "SJIS escape": function(done) {
